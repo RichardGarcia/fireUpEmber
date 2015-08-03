@@ -5,7 +5,7 @@ Ember.js is a highly anticipated framework for writing ambitious client-side web
 - http://www.pluralsight.com/courses/description/fire-up-emberjs
 
 Notes:
-- Need to update using Ember-Cli
+- Try to update using Ember-Cli
 - Add "Update order(s)" function, "Delete" order(s)
 - Play with Bootstrap CSS/JS
 - Play with SASS or LESS
