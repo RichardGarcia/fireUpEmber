@@ -16,6 +16,7 @@ App.TablesRoute = Ember.Route.extend({
 });
 
 // Controller
+// Check more controller option....
 App.TablesController = Ember.ArrayController.extend();
 
 
