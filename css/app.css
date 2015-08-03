@@ -1,0 +1,61 @@
+#tables a.panel {
+	text-align: center;
+	font-size: 28px;
+	font-weight: bold;
+}
+#tables a.panel.active {
+	background-color: #333;
+	color: #fff;
+	text-align: center;
+}
+#order h2 {
+	text-align: center;
+}
+#order h2 span {
+	background-color: #333;
+	color: #fff;
+	padding: 0.5em 1em;
+}
+#menu { 
+	list-style: none; 
+}
+#menu li {
+	text-align: center;
+	font-size: 18px;
+	color: #333; 
+}
+#menu li img {
+	width: 80px;
+	height: 80px;
+}
+#menu li p {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+#customer-tab {
+	background-color: #ededed;
+	border: 1px solid #dadada;
+	list-style: none; padding: 0.5em 1em;
+}
+#customer-tab li {
+	border-bottom: 1px solid #dadada;
+}
+#customer-tab li:last-child {
+	border-bottom: none;
+}
+#customer-tab li h3 {
+	font-weight: normal;
+}
+#customer-tab li h3 span {
+	font-weight: bold;
+	float: right;
+}
+#total {
+	border-top: 4px solid #333;
+}
+#total h3 {
+	font-weight: bold !important;
+}
+#total span {
+	font-weight: bold;
+}
