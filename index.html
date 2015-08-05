@@ -10,8 +10,8 @@
 	<body>
 		<script type="text/x-handlebars" data-template-name="application">
 			<div class="row">
-				<div class="twelve columns">
-					<h1>Order</h1>
+				<div class="large-12 columns">
+					<h1>Orders</h1>
 					<hr>
 					<p>{{outlet}}</p>
 				</div>
@@ -24,8 +24,11 @@
 
 		<script type="text/x-handlebars" data-template-name="tables">
 			<div class="row">
-				<div class="four columns" id="tables">
+				<div class="large-4 columns" id="tables">
 					{{partial "tableMenu"}}
+				</div>
+				<div class="large-8 columns" id="order">
+					{{outlet}}
 				</div>
 			</div>
 		</script>
@@ -33,10 +36,47 @@
 		<script type="text/x-handlebars" data-template-name="_tableMenu">
 			<h2>Tables</h2>
 			{{#each table in controller}}
-				{{#linkTo "table" table class="panel six columns"}} 
+				{{#linkTo "table" table class="panel large-6 columns"}}
 					{{table.id}}
 				{{/linkTo}}
 			{{/each}}
+		</script>
+
+		<script type="text/x-handlebars" data-template-name="table">
+			<div class="row">
+				<div class="large-3 columns">
+					{{render "food"}}
+				</div>
+				<div class="large-9 columns">
+					<h2>Table <span> {{id}} </span></h2>
+					{{render "tab" tab}}
+				</div>
+			</div>
+		</script>
+
+		<script type="text/x-handlebars" data-template-name="tab">
+			<ul id="customer-tab">
+				{{#each tabItem in tabItems}}
+					<li><h3>{{tabItem.food.name}} <span>${{tabItem.cents}}</span</h3></li>
+						{{else}}
+						<li><h3>Click a food to add it..</h3></li>
+				{{/each}}
+			</ul>
+		</script>
+
+		<script type="text/x-handlebars" data-template-name="tables/index">
+			<h2>Please select a table</h2>
+		</script>
+
+		<script type="text/x-handlebars" data-template-name="food">
+			<ul id="menu">
+				{{#each food in controller}}
+					<li>
+						<p>{{food.name}}</p>
+						<img {{bindAttr src="imageURL"}} //replace this images.. :)
+					</li>
+				{{/each}}
+			</ul>
 		</script>
 
 		<script src="js/jquery.js"></script>
