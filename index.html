@@ -33,6 +33,10 @@
 			</div>
 		</script>
 
+		<script type="text/x-handlebars" data-template-name="tables/index">
+			<h2>Please select a table</h2>
+		</script>
+
 		<script type="text/x-handlebars" data-template-name="_tableMenu">
 			<h2>Tables</h2>
 			{{#each table in controller}}
@@ -54,26 +58,11 @@
 			</div>
 		</script>
 
-		<script type="text/x-handlebars" data-template-name="tab">
-			<ul id="customer-tab">
-				{{#each tabItem in tabItems}}
-					<li><h3>{{tabItem.food.name}} <span>${{money tabItem.cents}}</span</h3></li>
-						{{else}}
-						<li><h3>Click a food to add it..</h3></li>
-				{{/each}}
-						<li id="total"><h3>Total<span>${{money cents}}</span></h3></li>
-			</ul>
-		</script>
-
-		<script type="text/x-handlebars" data-template-name="tables/index">
-			<h2>Please select a table</h2>
-		</script>
-
 		<script type="text/x-handlebars" data-template-name="food">
 			<ul id="menu">
 				{{#each food in controller}}
 					<li>
-						<a href="#" {{action "addFood" this}}>
+						<a href="#" {{action "addFood" food}}>
 							<img {{bindAttr src="imageURL"}}
 							<p>{{food.name}}</p>
 						</a>
@@ -81,6 +70,19 @@
 				{{/each}}
 			</ul>
 		</script>
+
+		<script type="text/x-handlebars" data-template-name="tab">
+			<ul id="customer-tab">
+				{{#each tabItem in tabItems}}
+					<li><h3>{{tabItem.food.name}} <span>${{money tabItem.cents}}</span</h3></li>
+						{{else}}
+						<li><h3>Click a food to add it..</h3></li>
+				{{/each}}
+						<li id="total">
+							<h3>Total <span>${{money cents}}</span></h3>
+						</li>
+			</ul>
+		</script>ß
 
 		<script src="js/jquery.js"></script>
 		<script src="js/handlebars.js"></script>
