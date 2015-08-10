@@ -15,6 +15,12 @@ App.ApplicationRoute = Ember.Route.extend({
 	}
 });
 
+App.IndexRoute = Ember.Route.extend({
+	redirect: function() {
+		this.transitionTo('tables');
+	}
+});
+
 App.TablesRoute = Ember.Route.extend({
 	model: function() {
 		return App.Table.find();
@@ -30,9 +36,31 @@ App.TableRoute = Ember.Route.extend({
 // CONTROLLERS
 // Check more controller option.... 3controllers
 	App.TablesController = Ember.ArrayController.extend();
-	App.TableController = Ember.ObjectController.extend();
-	App.FoodController = Ember.ArrayController.extend();
-	App.TabController = Ember.ObjectController.extend();
+
+	// this is auto generated
+	//App.TableController = Ember.ObjectController.extend();
+
+	App.FoodController = Ember.ArrayController.extend({
+		addFood: function(food) {
+			var table = this.controllerFor('table').get('model'),
+				tabItems = table.get('tab.tabItems');
+			
+			tabItems.createRecord({
+				food: food,
+				cents: food.get('cents')
+			});
+		}
+	});
+	
+	//App.TabController = Ember.ObjectController.extend();
+
+// VIEW HELPERS
+	Ember.Handlebars.registerBoundHelper('money', function(value) {
+		return (value % 100 === 0 ?
+				value / 100 + '.00' :
+				parseInt (value / 100, 10) + '.' + value % 100
+			);
+	});
 
 
 // MODELS
@@ -46,7 +74,12 @@ App.Table = DS.Model.extend({
 });
 
 App.Tab = DS.Model.extend({
-	tabItems: DS.hasMany('App.TabItem')
+	tabItems: DS.hasMany('App.TabItem'),
+	cents: function() {
+		return this.get('tabItems').getEach('cents').reduce(function(accum, item) {
+			return accum + item;
+		}, 0);
+	}.property('tabItems.@each.cents')
 });
 
 App.TabItem = DS.Model.extend({
@@ -141,13 +174,13 @@ App.Food.FIXTURES = [
 	{
 		id: 1,
 		name: 'Pizza',
-		imageUrl: 'img/pizza.png',
+		imageUrl: '/img/pizza.png',
 		cents: 1500
 	},
 	{
 		id: 2,
 		name: 'Pancakes',
-		imageUrl: 'img/pancakes.png',
+		imageUrl: '/img/pancakes.png',
 		cents: 300
 	},
 	{
